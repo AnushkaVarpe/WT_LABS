@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Durva Ajgaonkar - CV</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* General Page Styles */
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            color: #fff;
+        }
+
+        /* Video Background Styling */
+        .video-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1; /* Keeps the video behind content */
+        }
+
+        /* Content Container */
+        .content {
+            position: relative;
+            z-index: 1; /* Ensures content is above the video */
+            text-align: center;
+            padding: 100px 20px;
+        }
+
+        .content h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+        }
+
+        .content p {
+            font-size: 1.2em;
+            line-height: 1.5;
+        }
+
+        .section {
+            padding: 60px 20px;
+        }
+
+        .navbar {
+            background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent black */
+        }
+
+        .navbar .nav-link {
+            color: #fff !important;
+        }
+
+        .section-heading {
+            text-align: center;
+            color: #FFD700; /* Gold */
+            margin-bottom: 30px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Video Background -->
+    <video class="video-bg" autoplay muted loop>
+        <source src="my_video.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Durva Ajgaonkar</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#education">Education</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#certifications">Certifications</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Content -->
+    <div class="content">
+        <h1>Durva Ajgaonkar</h1>
+        <p>B.Tech - Computer Science Engineering</p>
+        <p>CGPA: 8.71</p>
+    </div>
+
+    <!-- Sections -->
+    <div id="education" class="section bg-dark text-white">
+        <div class="container">
+            <h2 class="section-heading">Education</h2>
+            <p>Vishwakarma Institute of Technology, Pune</p>
+            <p>B.Tech - Computer Science Engineering</p>
+            <p>CGPA: 8.71</p>
+        </div>
+    </div>
+
+    <div id="projects" class="section bg-light text-dark">
+        <div class="container">
+            <h2 class="section-heading">Projects</h2>
+            <ul class="list-unstyled">
+                <li>Image Tampering Detection | Python, Flask</li>
+                <li>Life Expectancy Prediction | R, RStudio</li>
+                <li>DBMS Billing System | C#, SQL</li>
+                <li>Stress Level Prediction | IoT, R</li>
+            </ul>
+        </div>
+    </div>
+
+    <div id="skills" class="section bg-dark text-white">
+        <div class="container">
+            <h2 class="section-heading">Technical Skills</h2>
+            <ul class="list-unstyled">
+                <li>Languages: Java, Python, C, SQL, JavaScript</li>
+                <li>Frameworks: Node.js, Express.js, REST API</li>
+                <li>Developer Tools: Git, VS Code, RStudio</li>
+            </ul>
+        </div>
+    </div>
+
+    <div id="certifications" class="section bg-light text-dark">
+        <div class="container">
+            <h2 class="section-heading">Certifications</h2>
+            <ul class="list-unstyled">
+                <li>Fundamentals of Deep Learning - NVIDIA</li>
+                <li>Data Engineering using AbInitio - Barclays</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Bootstrap Bundle JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

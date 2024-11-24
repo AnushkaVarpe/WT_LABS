@@ -1,0 +1,12 @@
+http://localhost:8012/26/register.php
+
+ CREATE DATABASE vit_results;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> USE vit_results;
+ CREATE TABLE users (
+    ->     id INT AUTO_INCREMENT PRIMARY KEY,
+    ->     username VARCHAR(50) NOT NULL UNIQUE,
+    ->     email VARCHAR(100) NOT NULL UNIQUE,
+    ->     password_hash VARCHAR(255) NOT NULL
+    -> );

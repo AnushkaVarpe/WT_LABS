@@ -1,0 +1,24 @@
+CREATE DATABASE vit_results;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> USE vit_results;
+Database changed
+mysql>
+mysql> CREATE TABLE students (
+    ->     id INT AUTO_INCREMENT PRIMARY KEY,
+    ->     student_id VARCHAR(50) NOT NULL,
+    ->     name VARCHAR(100) NOT NULL,
+    ->     subject1_mse INT NOT NULL,
+    ->     subject1_ese INT NOT NULL,
+    ->     subject2_mse INT NOT NULL,
+    ->     subject2_ese INT NOT NULL,
+    ->     subject3_mse INT NOT NULL,
+    ->     subject3_ese INT NOT NULL,
+    ->     subject4_mse INT NOT NULL,
+    ->     subject4_ese INT NOT NULL,
+    ->     total_marks FLOAT NOT NULL,
+    ->     result VARCHAR(20) NOT NULL
+    -> );
+
+//http://localhost:8012/22/result_system/index.php
+//http://localhost:8012/22/result_system/view_results.php

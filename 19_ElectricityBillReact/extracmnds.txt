@@ -1,0 +1,15 @@
+//to create react app
+npx create-react-app electricity-bill-calculator
+cd electricity-bill-calculator
+npm start
+//
+npm install bootstrap
+//final cmnd
+npm start
+
+//
+cd path/to/extracted-folder
+//installing the commands
+npm install
+//start the app
+npm start

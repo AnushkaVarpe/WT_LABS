@@ -1,0 +1,30 @@
+ npx create-react-app client
+cd client
+npm install axios react-router-dom
+
+npm init -y
+npm install express mysql2 bcryptjs cors body-parser
+
+
+mysql> CREATE TABLE users (
+    ->     id INT AUTO_INCREMENT PRIMARY KEY,
+    ->     name VARCHAR(100),
+    ->     email VARCHAR(100) UNIQUE,
+    ->     password VARCHAR(255)
+    -> );
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> CREATE TABLE books (
+    ->     id INT AUTO_INCREMENT PRIMARY KEY,
+    ->     title VARCHAR(255),
+    ->     author VARCHAR(100),
+    ->     price DECIMAL(10,2),
+    ->     description TEXT
+    -> );
+Query OK, 0 rows affected (0.00 sec)
+
+mysql>
+mysql> INSERT INTO books (title, author, price) VALUES
+    -> ('Book 1', 'Author 1', 19.99),
+    -> ('Book 2', 'Author 2', 9.99),
+    -> ('Book 3', 'Author 3', 14.99);

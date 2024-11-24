@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Array Operations</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- jQuery -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js"></script>
+    <style>
+        body {
+            background-color: #f8f9fa;
+            padding-top: 50px;
+        }
+        .container {
+            max-width: 900px;
+            margin-top: 30px;
+        }
+        .output-box {
+            background-color: #e9ecef;
+            padding: 10px;
+            border-radius: 5px;
+            min-height: 50px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Array Operations</a>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container">
+        <h1 class="text-center mb-4">Search and Sort Arrays</h1>
+
+        <!-- Integer Array Section -->
+        <div class="mb-5">
+            <h3>Array of Integers</h3>
+            <p>Perform operations on an array of integers.</p>
+            <div class="mb-3">
+                <label for="integerInput" class="form-label">Enter Integers (comma-separated):</label>
+                <input type="text" id="integerInput" class="form-control" placeholder="e.g., 10, 2, 33, 4, 5">
+            </div>
+            <div class="mb-3">
+                <button id="sortIntArray" class="btn btn-primary">Sort Array</button>
+                <button id="searchIntArray" class="btn btn-secondary">Search Array</button>
+            </div>
+            <div class="mb-3">
+                <label for="searchIntValue" class="form-label">Enter Value to Search:</label>
+                <input type="text" id="searchIntValue" class="form-control" placeholder="e.g., 33">
+            </div>
+            <div class="output-box" id="intArrayOutput"></div>
+        </div>
+
+        <!-- Named Entity Array Section -->
+        <div>
+            <h3>Array of Named Entities</h3>
+            <p>Perform operations on an array of named entities (e.g., names of people, places).</p>
+            <div class="mb-3">
+                <label for="entityInput" class="form-label">Enter Names (comma-separated):</label>
+                <input type="text" id="entityInput" class="form-control" placeholder="e.g., Alice, Bob, Charlie, David">
+            </div>
+            <div class="mb-3">
+                <button id="sortEntityArray" class="btn btn-primary">Sort Array</button>
+                <button id="searchEntityArray" class="btn btn-secondary">Search Array</button>
+            </div>
+            <div class="mb-3">
+                <label for="searchEntityValue" class="form-label">Enter Name to Search:</label>
+                <input type="text" id="searchEntityValue" class="form-control" placeholder="e.g., Bob">
+            </div>
+            <div class="output-box" id="entityArrayOutput"></div>
+        </div>
+    </div>
+
+    <!-- Bootstrap Bundle JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Custom Script -->
+    <script>
+        $(document).ready(function () {
+            // Integer Array Operations
+            $('#sortIntArray').click(function () {
+                let input = $('#integerInput').val();
+                if (input.trim() === "") {
+                    $('#intArrayOutput').html('<span class="text-danger">Please enter some integers.</span>');
+                    return;
+                }
+                let intArray = input.split(',').map(Number);
+                intArray.sort((a, b) => a - b);
+                $('#intArrayOutput').html('<strong>Sorted Array:</strong> ' + intArray.join(', '));
+            });
+
+            $('#searchIntArray').click(function () {
+                let input = $('#integerInput').val();
+                let searchValue = Number($('#searchIntValue').val());
+                if (input.trim() === "" || isNaN(searchValue)) {
+                    $('#intArrayOutput').html('<span class="text-danger">Please enter valid integers and a value to search.</span>');
+                    return;
+                }
+                let intArray = input.split(',').map(Number);
+                let index = intArray.indexOf(searchValue);
+                if (index !== -1) {
+                    $('#intArrayOutput').html('<strong>Search Result:</strong> Value found at index ' + index + '.');
+                } else {
+                    $('#intArrayOutput').html('<strong>Search Result:</strong> Value not found.');
+                }
+            });
+
+            // Named Entity Array Operations
+            $('#sortEntityArray').click(function () {
+                let input = $('#entityInput').val();
+                if (input.trim() === "") {
+                    $('#entityArrayOutput').html('<span class="text-danger">Please enter some names.</span>');
+                    return;
+                }
+                let entityArray = input.split(',').map(item => item.trim());
+                entityArray.sort();
+                $('#entityArrayOutput').html('<strong>Sorted Array:</strong> ' + entityArray.join(', '));
+            });
+
+            $('#searchEntityArray').click(function () {
+                let input = $('#entityInput').val();
+                let searchValue = $('#searchEntityValue').val().trim();
+                if (input.trim() === "" || searchValue === "") {
+                    $('#entityArrayOutput').html('<span class="text-danger">Please enter valid names and a value to search.</span>');
+                    return;
+                }
+                let entityArray = input.split(',').map(item => item.trim());
+                let index = entityArray.indexOf(searchValue);
+                if (index !== -1) {
+                    $('#entityArrayOutput').html('<strong>Search Result:</strong> Name found at index ' + index + '.');
+                } else {
+                    $('#entityArrayOutput').html('<strong>Search Result:</strong> Name not found.');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>jQuery List Control Demo</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+        }
+
+        .container {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 30px;
+        }
+
+        .list-box {
+            width: 45%;
+            padding: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .list-box h3 {
+            margin-top: 0;
+            color: #333;
+        }
+
+        select {
+            width: 100%;
+            height: 200px;
+            margin-bottom: 10px;
+            padding: 5px;
+        }
+
+        button {
+            padding: 8px 15px;
+            margin: 5px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .create-element-section {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #f5f5f5;
+            border-radius: 5px;
+        }
+
+        input[type="text"] {
+            padding: 8px;
+            margin-right: 10px;
+            width: 200px;
+        }
+
+        #elementContainer {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px dashed #ccc;
+            min-height: 50px;
+        }
+
+        .new-element {
+            margin: 5px;
+            padding: 10px;
+            background-color: #e9e9e9;
+            border-radius: 3px;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+    <h2>jQuery List Control Demo</h2>
+
+    <!-- List Copy Section -->
+    <div class="container">
+        <div class="list-box">
+            <h3>Source List</h3>
+            <select id="sourceList" multiple>
+                <option value="1">Item 1</option>
+                <option value="2">Item 2</option>
+                <option value="3">Item 3</option>
+                <option value="4">Item 4</option>
+                <option value="5">Item 5</option>
+            </select>
+            <div>
+                <button id="copyRight">Copy to Right →</button>
+                <button id="moveRight">Move to Right →</button>
+            </div>
+        </div>
+
+        <div class="list-box">
+            <h3>Destination List</h3>
+            <select id="destinationList" multiple>
+            </select>
+            <div>
+                <button id="copyLeft">← Copy to Left</button>
+                <button id="moveLeft">← Move to Left</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Create Element Section -->
+    <div class="create-element-section">
+        <h3>Create New Elements</h3>
+        <div>
+            <input type="text" id="newElementText" placeholder="Enter element text">
+            <button id="createButton">Create Element</button>
+            <button id="createWithAnimation">Create with Animation</button>
+        </div>
+        <div id="elementContainer">
+            <!-- New elements will be added here -->
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            // Copy items from source to destination
+            $('#copyRight').click(function() {
+                $('#sourceList option:selected').each(function() {
+                    var option = $(this).clone();
+                    $('#destinationList').append(option);
+                });
+            });
+
+            // Move items from source to destination
+            $('#moveRight').click(function() {
+                $('#sourceList option:selected').each(function() {
+                    $(this).appendTo('#destinationList');
+                });
+            });
+
+            // Copy items from destination to source
+            $('#copyLeft').click(function() {
+                $('#destinationList option:selected').each(function() {
+                    var option = $(this).clone();
+                    $('#sourceList').append(option);
+                });
+            });
+
+            // Move items from destination to source
+            $('#moveLeft').click(function() {
+                $('#destinationList option:selected').each(function() {
+                    $(this).appendTo('#sourceList');
+                });
+            });
+
+            // Create new element (simple)
+            $('#createButton').click(function() {
+                var text = $('#newElementText').val();
+                if (text) {
+                    $('<div>', {
+                        class: 'new-element',
+                        text: text
+                    }).appendTo('#elementContainer');
+                    $('#newElementText').val('');
+                }
+            });
+
+            // Create new element with animation
+            $('#createWithAnimation').click(function() {
+                var text = $('#newElementText').val();
+                if (text) {
+                    var newElement = $('<div>', {
+                        class: 'new-element',
+                        text: text
+                    }).css({
+                        'opacity': '0',
+                        'transform': 'scale(0.5)'
+                    });
+
+                    newElement.appendTo('#elementContainer').animate({
+                        'opacity': '1'
+                    }, 500).css({
+                        'transform': 'scale(1)',
+                        'transition': 'transform 0.5s'
+                    });
+
+                    $('#newElementText').val('');
+                }
+            });
+
+            // Double click to remove new elements
+            $(document).on('dblclick', '.new-element', function() {
+                $(this).fadeOut(300, function() {
+                    $(this).remove();
+                });
+            });
+
+            // Allow drag and drop between lists
+            $('select').on('dragstart', 'option', function(e) {
+                e.originalEvent.dataTransfer.setData('text/plain', $(this).index());
+            });
+
+            $('select').on('dragover', function(e) {
+                e.preventDefault();
+            });
+
+            $('select').on('drop', function(e) {
+                e.preventDefault();
+                var sourceIndex = e.originalEvent.dataTransfer.getData('text/plain');
+                var sourceOption = $('option').eq(sourceIndex);
+                $(this).append(sourceOption.clone());
+            });
+        });
+    </script>
+</body>
+</html>

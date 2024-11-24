@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Electricity Bill Calculator</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1 class="mt-5">Electricity Bill Calculator</h1>
+        <form action="/calculate" method="POST">
+            <div class="form-group">
+                <label for="units">Enter Units Consumed:</label>
+                <input type="number" class="form-control" id="units" name="units" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Calculate Bill</button>
+        </form>
+        
+
+        <div class="mt-3">
+            <h4>Bill Details:</h4>
+            <p>Units Consumed: <span th:text="${units}">0</span></p>
+            <p>Total Bill Amount: Rs. <span th:text="${bill}">0</span></p>
+        </div>        
+    </div>
+
+    <script>
+        $(document).ready(function () {
+            $("form").submit(function (e) {
+                let units = $("#units").val();
+                if (units <= 0) {
+                    alert("Please enter a valid number of units.");
+                    e.preventDefault();
+                }
+            });
+        });
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

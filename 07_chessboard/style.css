@@ -1,0 +1,94 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: #f8f9fa;
+}
+
+header {
+    padding: 20px;
+    background-color: #343a40;
+    color: white;
+}
+
+header h1 {
+    font-size: 24px;
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+}
+
+footer {
+    background-color: #343a40;
+    color: white;
+    padding: 10px;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+/* Chessboard Styling */
+.chessboard {
+    width: 90vw;
+    max-width: 500px;
+    aspect-ratio: 1; /* Ensures chessboard is square */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    height: 100%;
+}
+
+td {
+    width: 12.5%; /* 1/8 of the table width */
+    height: 12.5%; /* Keeps the table square */
+}
+
+td:nth-child(even) {
+    background-color: #f0d9b5; /* Light tile */
+}
+
+td:nth-child(odd) {
+    background-color: #b58863; /* Dark tile */
+}
+
+tr:nth-child(even) td:nth-child(even),
+tr:nth-child(odd) td:nth-child(odd) {
+    background-color: #b58863; /* Adjust dark tile for alternate rows */
+}
+
+tr:nth-child(even) td:nth-child(odd),
+tr:nth-child(odd) td:nth-child(even) {
+    background-color: #f0d9b5; /* Adjust light tile for alternate rows */
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    header h1 {
+        font-size: 20px;
+    }
+    .chessboard {
+        width: 90%;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    td {
+        height: auto; /* Adjust for small screens */
+    }
+}
